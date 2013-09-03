@@ -35,7 +35,7 @@
     "grunt": "~0.4.0"
   },
   "dependencies":{
-      "velocityjs":"0.3.7"
+      "velocityjs":"~0.3.7"
   },
   "peerDependencies": {
     "grunt": "~0.4.0"
