@@ -21,20 +21,22 @@ module.exports = function(grunt) {
         options: {
           separator: ': ',
           punctuation: ' !!!',
-          g_data_file:"test/globaldata.json"
+          g_data_file: "fixtures/globaldata.json"
         },
-        files: {
-          'xxx': ['test/fixtures/ex.vm']
-        }
+        files: [
+          {
+            expand: true,
+            src: 'test/*.vm',
+            dest: "output"
+          }
+        ]
       }
+      
     }
   });
 
   // Actually load this plugin's task(s).
   grunt.loadTasks('tasks');
-
-
-
   grunt.registerTask('default', ['velocity_js']);
 
 };
