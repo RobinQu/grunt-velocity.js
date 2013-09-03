@@ -39,13 +39,14 @@ module.exports = function (grunt) {
                 var jsonPath =  filepath.replace(f.orig.cwd, options.datadir).replace('.vm', '') + ".json";
                 var isJsonPath = grunt.file.exists(jsonPath);
                 var json = isJsonPath ? grunt.file.readJSON(jsonPath) : {};
-
+                var globals = options.globals ? grunt.file.readJSON(options.globals) : {};
+                json = grunt.util._.extend(globals, json);
                 return velocity.render(string, json, {
                     parse: function (fname) {
                         fname = path.normalize(path.dirname(filepath) + "\\" + fname);
                         var jsonPath = fname.replace('.vm', '') + ".json";
-                        // var isJsonPath = grunt.file.exists(jsonPath);
-                        var json = jsonPath ? grunt.file.readJSON(jsonPath) : {};
+                        var isJsonPath = grunt.file.exists(jsonPath);
+                        var json = isJsonPath ? grunt.file.readJSON(jsonPath) : {};
                         fname = grunt.file.read(fname);
                         return velocity.render(fname, json);
                     }
