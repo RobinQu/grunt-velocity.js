@@ -21,12 +21,15 @@ module.exports = function(grunt) {
         options: {
           separator: ': ',
           punctuation: ' !!!',
-          g_data_file: "fixtures/globaldata.json"
+          g_data_file: "test/fixtures/globaldata.json",
+          datadir: "test/fixtures"
+          
         },
         files: [
           {
+            cwd: 'test/velocity',
             expand: true,
-            src: 'test/*.vm',
+            src: '{,*/}*.vm',
             dest: "output"
           }
         ]

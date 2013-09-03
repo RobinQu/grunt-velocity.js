@@ -35,11 +35,8 @@ module.exports = function (grunt) {
             }).map(function (filepath) {
                 // Read file source.
                 var string = grunt.file.read(filepath);
-                var tmp = filepath.split(path.sep);
-                tmp.shift();
-                tmp.unshift("fixtures");
                 // Read json context
-                var jsonPath =  tmp.join(path.sep).replace('.vm', '') + ".json";
+                var jsonPath =  filepath.replace(f.orig.cwd, options.datadir).replace('.vm', '') + ".json";
                 var isJsonPath = grunt.file.exists(jsonPath);
                 var json = isJsonPath ? grunt.file.readJSON(jsonPath) : {};
 
@@ -59,11 +56,12 @@ module.exports = function (grunt) {
             // Handle options.
             src += options.punctuation;
 
+            var dest = f.dest.replace("vm", "html");
             // Write the destination file.
-            grunt.file.write(f.dest.replace("vm", "html"), src);
+            grunt.file.write(dest, src);
 
             // Print a success message.
-            grunt.log.writeln('File "' + f.dest + '" created.');
+            grunt.log.writeln('File "' + dest + '" created.');
         });
     });
 
