@@ -39,7 +39,7 @@ module.exports = function (grunt) {
                 var jsonPath =  filepath.replace(f.orig.cwd, options.datadir).replace('.vm', '') + ".json";
                 var isJsonPath = grunt.file.exists(jsonPath);
                 var json = isJsonPath ? grunt.file.readJSON(jsonPath) : {};
-                var globals = options.globals ? grunt.file.readJSON(options.globals) : {};
+                var globals = options.globals && grunt.file.exists(options.globals) ? grunt.file.readJSON(options.globals) : {};
                 json = grunt.util._.extend(globals, json);
                 return velocity.render(string, json, {
                     parse: function (fname) {

@@ -21,7 +21,7 @@ module.exports = function(grunt) {
         options: {
           separator: ': ',
           punctuation: ' !!!',
-          globals: "test/fixtures/globaldata.json",
+          globals: "test/fixtures/globals.json",
           datadir: "test/fixtures"
           
         },
