@@ -43,7 +43,7 @@ module.exports = function (grunt) {
                 json = grunt.util._.extend(globals, json);
                 return velocity.render(string, json, {
                     parse: function (fname) {
-                        fname = path.normalize(path.dirname(filepath) + "\\" + fname);
+                        fname = path.normalize(path.dirname(filepath) + path.sep + fname);
                         var jsonPath = fname.replace('.vm', '') + ".json";
                         var isJsonPath = grunt.file.exists(jsonPath);
                         var json = isJsonPath ? grunt.file.readJSON(jsonPath) : {};
